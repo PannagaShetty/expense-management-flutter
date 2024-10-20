@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:myapp/core/extensions/spacing_extension.dart';
 import 'package:myapp/core/theme/app_colors.dart';
 import 'package:myapp/core/utils/show_snackbar.dart';
@@ -11,6 +12,9 @@ import 'package:myapp/features/auth/presentation/widgets/auth_button.dart';
 import 'package:myapp/features/auth/presentation/widgets/auth_field.dart';
 
 class SignUpPage extends StatefulWidget {
+  static const String routeName = 'signUp';
+  static const String routePath = '/signUp';
+
   const SignUpPage({super.key});
 
   @override
@@ -101,10 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       TextSpan(
                         text: 'Sign In',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => const SignInPage()));
-                          },
+                        recognizer: TapGestureRecognizer()..onTap = () => context.go(SignInPage.routePath),
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: AppColors.gradient2,
                               fontWeight: FontWeight.bold,

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:myapp/core/extensions/spacing_extension.dart';
 import 'package:myapp/core/theme/app_colors.dart';
 import 'package:myapp/core/utils/show_snackbar.dart';
@@ -10,6 +11,9 @@ import 'package:myapp/features/auth/presentation/widgets/auth_button.dart';
 import 'package:myapp/features/auth/presentation/widgets/auth_field.dart';
 
 class SignInPage extends StatefulWidget {
+  static const String routeName = 'signIn';
+  static const String routePath = '/signIn';
+
   const SignInPage({super.key});
 
   @override
@@ -92,10 +96,7 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       TextSpan(
                         text: 'Sign Up',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
-                          },
+                        recognizer: TapGestureRecognizer()..onTap = () => context.go(SignUpPage.routePath),
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               color: AppColors.gradient2,
                               fontWeight: FontWeight.bold,

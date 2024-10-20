@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:myapp/core/theme/app_theme.dart';
 import 'package:myapp/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:myapp/features/auth/presentation/sign_up_page.dart';
 import 'package:myapp/init_dependencies.dart';
+import 'package:myapp/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,40 +15,17 @@ Future<void> main() async {
   ], child: const MyApp()));
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    context.read<AuthBloc>().add(AuthIsUserSignedIn());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: AppTheme.darkThemeMode,
-      home: BlocSelector<AppUserCubit, AppUserState, bool>(
-        selector: (state) {
-          return state is AppUserLoggedIn;
-        },
-        builder: (context, isLoggedIn) {
-          if (isLoggedIn) {
-            return const Scaffold(
-              body: Center(
-                child: Text('data'),
-              ),
-            );
-          }
-          return const SignUpPage();
-        },
-      ),
+      routeInformationProvider: router.routeInformationProvider,
+      routerDelegate: router.routerDelegate,
+      routeInformationParser: router.routeInformationParser,
     );
   }
 }
