@@ -1,4 +1,13 @@
 {
   "editor.wordWrapColumn": 180,
-  "cSpell.words": ["autovalidate", "myapp", "RGBO", "Tapable", "vsync"]
+  "cSpell.words": [
+    "autovalidate",
+    "fpdart",
+    "myapp",
+    "RGBO",
+    "Supabase",
+    "Tapable",
+    "Usecase",
+    "vsync"
+  ]
 }
