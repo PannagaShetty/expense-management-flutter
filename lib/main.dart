@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/core/common/cubits/app_user/app_user_cubit.dart';
+import 'package:myapp/core/observers/bloc_observers.dart';
 import 'package:myapp/core/theme/app_theme.dart';
 import 'package:myapp/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:myapp/init_dependencies.dart';
@@ -8,6 +9,7 @@ import 'package:myapp/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await initDependencies();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<AuthBloc>(create: (_) => serviceLocator<AuthBloc>()),
